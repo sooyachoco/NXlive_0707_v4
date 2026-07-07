@@ -181,6 +181,55 @@ ol.tl li.ok{border-left-color:var(--ok);background:#eefcf6}
     <span style="color:var(--bc-500)">★ = 화면이 코드로 처음 만들어진 지점</span>
   </div>
 
+  <!-- Deliverables per stage -->
+  <h2>단계별 산출물</h2>
+  <div class="card">
+    <table>
+      <tr><th style="width:150px">단계</th><th style="width:230px">산출물</th><th>내용</th></tr>
+      <tr>
+        <td><span class="tag">설계</span> 사용자 조사·시나리오</td>
+        <td class="mono">scenario.md · flow.md</td>
+        <td>페르소나별 과업 시나리오, 화면 후보, 기능 흐름 락 (ux-research SSOT 인용)</td>
+      </tr>
+      <tr>
+        <td><span class="tag">설계</span> 레퍼런스·기준 톤</td>
+        <td class="mono">reference-board.md</td>
+        <td>기준 톤 = NX Basic 1.0v 라이트 + 사이드바, 화면별 인터랙션 레퍼런스</td>
+      </tr>
+      <tr>
+        <td><span class="tag">설계</span> UI 설계·상태</td>
+        <td class="mono">ui-design.md</td>
+        <td>화면 위계(1순위/2순위/숨김)·주 행동, 상태 설계, "네이티브 a/button" 접근성 요구 명시</td>
+      </tr>
+      <tr>
+        <td><span class="tag">설계</span> 명세</td>
+        <td class="mono">spec.md · plan.md · decisions.md · data-model.md</td>
+        <td>기능 명세, Phase 계획, 기술 결정 로그(D-1~D-10), 데이터 모델(6 엔티티)</td>
+      </tr>
+      <tr>
+        <td><span class="tag">구현</span> 프로토타입 (Phase 0)</td>
+        <td class="mono">frontend/ (5페이지)</td>
+        <td>React 19 + Vite + TS, Mock 서비스 레이어, Zustand, 라우팅 — build 통과</td>
+      </tr>
+      <tr>
+        <td><span class="tag" style="background:#eefcf6;color:var(--ok)">검증</span> 사용성 테스트</td>
+        <td class="mono">UT_PLAN · UT_SCENARIOS · UT_OBSERVATION_SHEET · UT_FINDINGS_REPORT · REDESIGN_PROPOSAL</td>
+        <td>3 페르소나 테스트 계획·시나리오·관찰·결과(<span class="ok-txt">S4=0 / S3=0</span>)·개선안</td>
+      </tr>
+      <tr>
+        <td><span class="tag" style="background:#eefcf6;color:var(--ok)">검증</span> 개발 핸드오프</td>
+        <td class="mono">HANDOFF.md</td>
+        <td>확정·검증된 개발 스펙 — 범위·레이아웃·토큰·상태·라우트</td>
+      </tr>
+      <tr>
+        <td><span class="tag" style="background:#f4f5f7;color:var(--bc-900)">품질</span> Phase 1</td>
+        <td class="mono">tasks.md · technical-debt.md · review token</td>
+        <td>태스크(T1-001~review)·완료 기준, 리뷰 결과·기술부채 13, 리뷰 게이트 토큰</td>
+      </tr>
+    </table>
+    <p style="margin-top:12px;font-size:11.5px;color:var(--bc-500);line-height:1.6">※ 산출물 문서는 프로젝트 저장소 <span class="mono">specs/001-nxlive-mvp/</span> 에 있으며, 공개 데모 저장소에는 앱·대시보드만 포함됩니다.</p>
+  </div>
+
   <!-- Phase 1 detail -->
   <h2>Phase 1 세부 — 품질 · 접근성 · E2E</h2>
   <div class="pipe">
