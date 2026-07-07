@@ -95,10 +95,32 @@ td .tag{background:var(--pc-100);color:var(--pc-800);font-weight:700;font-size:1
 
 footer{margin-top:40px;color:var(--bc-500);font-size:12px;text-align:center}
 
+/* full pipeline (design → quality) */
+.flow{display:grid;grid-template-columns:1.2fr .82fr 1fr;gap:16px;align-items:start}
+.phase-col{display:flex;flex-direction:column}
+.phase-h{font-size:12px;font-weight:800;letter-spacing:.02em;padding:7px 12px;border-radius:8px;margin-bottom:10px;align-self:flex-start;display:inline-flex;align-items:center;gap:7px}
+.phase-h.design{background:#f5f9ff;color:var(--pc-900);border:1px solid #cfe0fb}
+.phase-h.verify{background:#eefcf6;color:var(--ok);border:1px solid #c3f0dd}
+.phase-h.quality{background:#f4f5f7;color:var(--bc-900);border:1px solid var(--bc-200)}
+ol.tl{list-style:none;counter-reset:tl;display:flex;flex-direction:column;gap:8px}
+ol.tl li{counter-increment:tl;display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:10px;border:1px solid var(--bc-200);border-left:4px solid var(--bc-400);background:var(--surface)}
+ol.tl li::before{content:counter(tl);flex:none;width:20px;height:20px;border-radius:50%;background:var(--bc-100);color:var(--bc-700);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+ol.tl li .txt{display:flex;flex-direction:column;gap:2px}
+ol.tl li .s{font-weight:800;font-size:13px}
+ol.tl li .d{font-size:11.5px;color:var(--bc-700);line-height:1.45}
+ol.tl li.design{border-left-color:var(--pc-800);background:#f5f9ff}
+ol.tl li.code{border-left-color:var(--bc-1000);background:#f4f5f7}
+ol.tl li.code .s::after{content:" ★";color:var(--pc-800)}
+ol.tl li.ok{border-left-color:var(--ok);background:#eefcf6}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11px;color:var(--bc-700);margin:14px 2px 0;font-weight:600}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+
 @media(max-width:860px){
   .kpis{grid-template-columns:1fr 1fr}
   .pipe{grid-template-columns:repeat(2,1fr)}
   .cols{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr}
   .tokens{grid-template-columns:repeat(3,1fr)}
 }
 </style>
@@ -108,8 +130,8 @@ footer{margin-top:40px;color:var(--bc-500);font-size:12px;text-align:center}
 
   <header>
     <div>
-      <div class="logo">NX<b>live</b> · Phase 1 대시보드</div>
-      <div class="sub">품질 · 접근성 · E2E — run-phase 자율 실행 결과 · 넥슨 게임 라이브 스트리밍 MVP</div>
+      <div class="logo">NX<b>live</b> 제작 대시보드</div>
+      <div class="sub">초기 화면 구성(설계) → 프로토타입 → 사용성 테스트 → 품질(Phase 1)까지 전체 제작 흐름 · 넥슨 게임 라이브 스트리밍 MVP</div>
       <div class="meta">Mock 데이터 · 인증 없음 · React 19 + Vite + TS + Tailwind · NX Basic 1.0v (라이트) · 2026-07-07</div>
     </div>
     <span class="badge"><span class="dot"></span> Phase 1 완료</span>
@@ -125,8 +147,42 @@ footer{margin-top:40px;color:var(--bc-500);font-size:12px;text-align:center}
     <div class="kpi"><div class="label">E2E 자동 테스트</div><div class="value ok">11<small> / 11</small></div><div class="note">smoke 5 + health 6</div></div>
   </div>
 
-  <!-- Pipeline -->
-  <h2>태스크 파이프라인</h2>
+  <!-- Full pipeline: design → quality -->
+  <h2>전체 제작 파이프라인 — 초기 화면 구성부터</h2>
+  <div class="flow">
+    <div class="phase-col">
+      <span class="phase-h design">① 설계 · 초기 화면 구성</span>
+      <ol class="tl">
+        <li class="design"><div class="txt"><span class="s">사용자 조사 · 시나리오</span><span class="d">write-scenario · ux-research SSOT(페르소나·여정·과업) → scenario.md · flow.md</span></div></li>
+        <li class="design"><div class="txt"><span class="s">레퍼런스 · 기준 톤</span><span class="d">reference-proposal → NX Basic 라이트 + 사이드바 확정 (design-direction)</span></div></li>
+        <li class="design"><div class="txt"><span class="s">UI 설계 · 상태</span><span class="d">ui-design-workflow → 화면 위계 · flow 락 · "네이티브 a/button" 접근성 요구 명시 → ui-design.md</span></div></li>
+        <li class="code"><div class="txt"><span class="s">화면 구현 프로토타입</span><span class="d">create-spec Step 2.7 → React 5페이지 + Mock (Phase 0) · 접근성 선반영</span></div></li>
+      </ol>
+    </div>
+    <div class="phase-col">
+      <span class="phase-h verify">② 검증 · 핸드오프</span>
+      <ol class="tl">
+        <li class="ok"><div class="txt"><span class="s">AI 사용성 테스트</span><span class="d">ai-usability-test · 3 페르소나 → S4=0 / S3=0 (치명 결함 예방)</span></div></li>
+        <li><div class="txt"><span class="s">개발 핸드오프</span><span class="d">design-handoff → HANDOFF.md (확정·검증된 스펙)</span></div></li>
+      </ol>
+    </div>
+    <div class="phase-col">
+      <span class="phase-h quality">③ 품질 완성 · Phase 1</span>
+      <ol class="tl">
+        <li class="code"><div class="txt"><span class="s">품질 · 접근성 · E2E 구현</span><span class="d">run-phase → 상태처리 · 접근성 · 반응형 · E2E (T1-001~004)</span></div></li>
+        <li class="ok"><div class="txt"><span class="s">리뷰 게이트 통과</span><span class="d">코드 리뷰 6+3 · AI UT 게이트(S4=0/S3=0) → 배포 가능 (T1-review)</span></div></li>
+      </ol>
+    </div>
+  </div>
+  <div class="legend">
+    <span><i style="background:var(--pc-800)"></i> 설계 스킬</span>
+    <span><i style="background:var(--bc-1000)"></i> 코딩(create-spec / run-phase)</span>
+    <span><i style="background:var(--ok)"></i> 검증 · 게이트 통과</span>
+    <span style="color:var(--bc-500)">★ = 화면이 코드로 처음 만들어진 지점</span>
+  </div>
+
+  <!-- Phase 1 detail -->
+  <h2>Phase 1 세부 — 품질 · 접근성 · E2E</h2>
   <div class="pipe">
     <div class="step"><div class="n">1</div><div class="t">T1-001 상태 처리</div><div class="d">로딩/빈/에러 3종 통일 (ErrorState 추가)</div></div>
     <div class="step"><div class="n">2</div><div class="t">T1-002 접근성</div><div class="d">로고 div→Link, 클릭 전용 요소 0</div></div>
